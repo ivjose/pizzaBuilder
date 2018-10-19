@@ -11,7 +11,7 @@ export default class Selection extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       sizeList: pizzaBuilder.size,
       vegetableToppingsList: pizzaBuilder.vegetable_toppings,
       meatToppingsList: pizzaBuilder.non_vegetable_toppings,
@@ -45,22 +45,20 @@ export default class Selection extends Component {
   };
 
   handleToggleCheese = index => {
-    this.handleUpdateState(index, "name", "cheeseList", "selectedCheese");
+    this.handleUpdateState(index, "toppings", "cheeseList", "selectedCheese");
   };
 
-  handleUpdateState = (selected, compareValue,itemNameList, selectedNameList ) => {
+  handleUpdateState = (
+    selected,
+    compareValue,
+    itemNameList,
+    selectedNameList
+  ) => {
     let itemList = this.state[itemNameList];
     itemList[selected] = {
       ...itemList[selected],
       selected: !itemList[selected].selected
     };
-
-    itemList =  {
-      toppings: "Tomatoes",
-      value: 60,
-      selected: false // true
-    },
-
     if (itemList[selected].selected) {
       this.setState({
         [selectedNameList]: [
